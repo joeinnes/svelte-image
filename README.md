@@ -30,7 +30,21 @@ provider.set({
 Currently supported:
 * Statically (zero configuration)
 * Cloudimage (use your token as the 'key')
+
+```
+provider.set({
+  name: 'cloudimage',
+  key: 'cloudimage_token'
+})
+```
 * Cloudinary (you need to create an HTTP Proxy media source, and then use your cloud name as the key)
+
+```
+provider.set({
+  name: 'cloudinary',
+  key: 'cloud_name'
+})
+```
 
 ## Notes and Caveats
 
