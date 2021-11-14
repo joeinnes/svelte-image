@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/env';
+	import { provider } from '$lib/store/store';
+
 	export let alt: string;
 	export let aspectRatio = '16/9';
 	export let objectFit = 'cover';
@@ -38,14 +40,20 @@
 			imgPath = imgUrl.pathname;
 			// If you've already downloaded a higher quality image, then don't bother replacing with a lower quality one
 			clientWMax = Math.max(clientW, clientWMax);
-			// To Do: load the image in the background and only swap in when it's ready
-			imgSrc = `https://cdn.statically.io/img/${domain}/w=${
-				hidpi ? 2 * clientWMax : clientWMax
-			},q=${quality},f=auto${imgPath}`;
+			let width = hidpi ? 2 * clientWMax : clientWMax;
+			switch ($provider.name) {
+				case 'cloudinary':
+					imgSrc = `https://${$provider.key}.mo.cloudinary.net/${imgUrl.protocol}//${domain}${imgPath}?tx=w_${width},c_fill,g_auto,q_${quality}`;
+					break;
+				case 'cloudimage':
+					imgSrc = `https://${$provider.key}.cloudimg.io/v7/${domain}${imgPath}?width=${width}&q=${quality}`;
+					break;
+				default:
+					imgSrc = `https://cdn.statically.io/img/${domain}/w=${width},q=${quality},f=auto${imgPath}`;
+			}
 		} catch (e) {
-			// The user's done something silly like not passing us a full URL to the image, so let's not ask Statically to do anything, just show whatever the user wanted.
 			console.log(
-				'Your image could not be optimised by Statically (did you provide a full path and make sure the extension is included?)'
+				'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
 			);
 		} finally {
 			return imgSrc;
@@ -55,8 +63,9 @@
 	const getNewImgSrcDB = browser ? debounce(() => getNewImgSrc(clientW), 100) : getNewImgSrc;
 	const handleError = (e) => {
 		console.log(
-			'Your image could not be optimised by Statically (did you provide a full path and make sure the extension is included?)'
+			'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
 		);
+		console.error(e);
 		imgSrc = src;
 	};
 
@@ -65,6 +74,7 @@
 	}
 </script>
 
+{JSON.stringify($provider)}
 <div style="width: 100%; aspect-ratio: {aspectRatio}" bind:clientWidth={clientW}>
 	{#if imgSrc}
 		<img

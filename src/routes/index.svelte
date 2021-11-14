@@ -1,5 +1,5 @@
 <script>
-	import Image from '$lib/Image.svelte';
+	import { Image } from '$lib/index';
 </script>
 
 <div style="width: 50vw; margin: auto;">

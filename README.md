@@ -17,6 +17,20 @@ Note that except for the 'alt' tag, all tags are optional and their default valu
 <Image src="https://kit.svelte.dev/images/svelte-kit-machine.webp" alt="Some alt text which is required" aspectRatio="16/9" objectFit="cover" quality="80"  loading="lazy" hidpi={true} />
 ```
 
+You can also configure alternative providers by specifying a 'name' and a 'key'.
+
+```
+import { Image, provider } from '$lib/index';
+provider.set({
+  name: 'cloudimage',
+  key: 'cloudimage_token'
+});
+```
+
+Currently supported:
+* Cloudimage
+* Cloudinary (create an HTTP Proxy media source)
+* 
 ## Notes and Caveats
 
 hidpi mode will load the image double size.
