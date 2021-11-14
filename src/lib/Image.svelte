@@ -1,25 +1,28 @@
 <script lang="ts">
 	import { browser } from '$app/env';
-	export let alt;
+	export let alt: string;
 	export let aspectRatio = '16/9';
 	export let objectFit = 'cover';
 	export let quality = '80';
 	export let src = 'https://placehold.it/1600x900';
 	export let loading = 'lazy';
 	export let hidpi = true;
-	let actualImg, shadowImg;
+	let actualImg: HTMLImageElement, shadowImg: HTMLImageElement;
 	let clientW = 0;
 	let clientWMax = 0;
 	let domain = '';
 	let imgPath = '';
 	let imgSrc = '';
 
-	let debounce;
+	let debounce: {
+		(arg0: () => string, arg1: number): any;
+		(callback: () => {}, wait: number): (...args: any) => void;
+	};
 
 	if (browser) {
-		debounce = (callback, wait) => {
+		debounce = (callback: () => {}, wait: number) => {
 			let timeoutId = null;
-			return (...args) => {
+			return (...args: any) => {
 				window.clearTimeout(timeoutId);
 				timeoutId = window.setTimeout(() => {
 					callback.apply(null, args);
@@ -28,7 +31,7 @@
 		};
 	}
 
-	const getNewImgSrc = (clientW) => {
+	const getNewImgSrc = (clientW: number) => {
 		try {
 			const imgUrl = new URL(src);
 			domain = imgUrl.host;
