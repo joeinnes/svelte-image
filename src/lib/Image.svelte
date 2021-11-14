@@ -11,15 +11,15 @@
 	let imgPath = '';
 	let imgSrc = '';
 	$: {
-		console.log('running');
 		try {
 			[, domain, imgPath] = src.match(/\/\/(.*?)\/(.*)/);
 			// If you've already downloaded a higher quality image, then don't bother replacing with a lower quality one
 			clientWMax = Math.max(clientW, clientWMax);
+			// To Do: debounce this in case the user is resizing the window
 			imgSrc = `https://cdn.statically.io/img/${domain}/w=${clientWMax},q=${quality},f=auto/${imgPath}`;
 		} catch (e) {
 			// The user's done something silly like not passing us a full URL to the image, so let's not ask Statically to do anything, just show whatever the user wanted.
-			console.log(e);
+			console.log("Your image could not be optimised by Statically (did you provide a full path and make sure the extension is included?)");
 			imgSrc = src;
 		}
 	}
@@ -32,6 +32,7 @@
 		{alt}
 		{loading}
 		on:error={(e) => {
+			console.log("Your image could not be optimised by Statically (did you provide a full path and make sure the extension is included?)");
 			e.target.src = src;
 		}}
 	/>
