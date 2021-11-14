@@ -6,11 +6,13 @@
 	export let quality = '80';
 	export let src = 'https://placehold.it/1600x900';
 	export let loading = 'lazy';
+	export let hidpi = true;
+	let actualImg, shadowImg;
 	let clientW = 0;
 	let clientWMax = 0;
 	let domain = '';
 	let imgPath = '';
-	let imgSrc = src;
+	let imgSrc = '';
 
 	let debounce;
 
@@ -33,8 +35,10 @@
 			imgPath = imgUrl.pathname;
 			// If you've already downloaded a higher quality image, then don't bother replacing with a lower quality one
 			clientWMax = Math.max(clientW, clientWMax);
-			// To Do: debounce this in case the user is resizing the window
-			imgSrc = `https://cdn.statically.io/img/${domain}/w=${clientWMax},q=${quality},f=auto${imgPath}`;
+			// To Do: load the image in the background and only swap in when it's ready
+			imgSrc = `https://cdn.statically.io/img/${domain}/w=${
+				hidpi ? 2 * clientWMax : clientWMax
+			},q=${quality},f=auto${imgPath}`;
 		} catch (e) {
 			// The user's done something silly like not passing us a full URL to the image, so let's not ask Statically to do anything, just show whatever the user wanted.
 			console.log(
@@ -59,11 +63,22 @@
 </script>
 
 <div style="width: 100%; aspect-ratio: {aspectRatio}" bind:clientWidth={clientW}>
-	<img
-		src={imgSrc}
-		style="width: 100%; height: 100%; object-fit: {objectFit}"
-		{alt}
-		{loading}
-		on:error={handleError}
-	/>
+	{#if imgSrc}
+		<img
+			src=""
+			style="width: 100%; height: 100%; object-fit: {objectFit}"
+			{alt}
+			{loading}
+			bind:this={actualImg}
+		/>
+		<img
+			style="display:none"
+			src={imgSrc}
+			bind:this={shadowImg}
+			on:error={handleError}
+			on:load={() => (actualImg.src = shadowImg.src)}
+			alt="This image should not be displayed"
+			aria-hidden="true"
+		/>
+	{/if}
 </div>
