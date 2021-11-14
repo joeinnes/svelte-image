@@ -1,11 +1,11 @@
 {
-	"name": "@joeinnes/statically-image",
-	"version": "0.3.0",
-	"description": "Svelte Component for using the Statically image CDN to dynamically serve responsive images.",
-	"homepage": "https://github.com/joeinnes/statically-image",
+	"name": "@joeinnes/svelte-image",
+	"version": "0.0.1",
+	"description": "Svelte Component for using image CDNs to dynamically serve responsive images.",
+	"homepage": "https://github.com/joeinnes/svelte-image",
 	"bugs": {
-		"url": "https://github.com/joeinnes/statically-image",
-		"email": "statically-image@joeinn.es"
+		"url": "https://github.com/joeinnes/svelte-image",
+		"email": "svelte-image@joeinn.es"
 	},
 	"license": "MIT",
 	"author": "Joe Innes <joe@joeinn.es> (https://joeinn.es)",
