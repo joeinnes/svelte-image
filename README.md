@@ -4,14 +4,17 @@ A Svelte component which uses the [Statically CDN](https://statically.io/) to se
 
 ## Usage
 
+### Install
+`npm i @joeinnes/statically-image`
+
+### Import
+Note that except for the 'alt' tag, all tags are optional and their default values are shown in the example below.
 ```
 <script>
   import { Image } from '@joeinnes/statically-image';
 </script>
 
-https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXtyHCjI0n7rAD6AmyzeYxgtTkhn9iayaehA&usqp=CAU
-
-<Image src="https://apod.nasa.gov/apod/image/2111/67P_211107_1067.jpg" alt="Some alt text which is required" aspectRatio="16/9" objectFit="cover" quality="80"  loading="lazy" hidpi={true} />
+<Image src="https://kit.svelte.dev/images/svelte-kit-machine.webp" alt="Some alt text which is required" aspectRatio="16/9" objectFit="cover" quality="80"  loading="lazy" hidpi={true} />
 ```
 
 ## Notes and Caveats
