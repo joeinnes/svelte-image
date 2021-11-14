@@ -1,6 +1,6 @@
 # Statically Image
 
-Uses the [Statically CDN](https://statically.io/) to serve responsive images.
+A Svelte component which uses the [Statically CDN](https://statically.io/) to serve responsive images.
 
 ## Usage
 
