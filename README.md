@@ -9,7 +9,7 @@ A Svelte component which uses the [Statically CDN](https://statically.io/) to se
   import { Image } from '@joeinnes/statically-image';
 </script>
 
-<Image src="https://apod.nasa.gov/apod/image/2111/67P_211107_1067.jpg" alt="Some alt text which is required" aspectRatio="16/9" objectFit="cover" quality="80"  loading="lazy">
+<Image src="https://apod.nasa.gov/apod/image/2111/67P_211107_1067.jpg" alt="Some alt text which is required" aspectRatio="16/9" objectFit="cover" quality="80"  loading="lazy" />
 ```
 
 ## Notes and Caveats

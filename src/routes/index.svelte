@@ -2,10 +2,14 @@
 	import Image from '$lib/Image.svelte';
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-<Image
-	src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png"
-	alt="no"
-/>
+<div style="width: 50vw; margin: auto;">
+	Demo at 50% screen width
+	<Image
+		src="https://apod.nasa.gov/apod/image/2111/67P_211107_1067.jpg"
+		alt="Some alt text which is required"
+		aspectRatio="16/9"
+		objectFit="cover"
+		quality="80"
+		loading="lazy"
+	/>
+</div>
