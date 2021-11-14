@@ -74,7 +74,6 @@
 	}
 </script>
 
-{JSON.stringify($provider)}
 <div style="width: 100%; aspect-ratio: {aspectRatio}" bind:clientWidth={clientW}>
 	{#if imgSrc}
 		<img
