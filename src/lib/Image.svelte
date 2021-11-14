@@ -4,7 +4,7 @@
 	export let aspectRatio = '16/9';
 	export let objectFit = 'cover';
 	export let quality = '80';
-	export let src = 'https://placehold.it/1600x900';
+	export let src = 'https://kit.svelte.dev/images/svelte-kit-machine.webp';
 	export let loading = 'lazy';
 	export let hidpi = true;
 	let actualImg: HTMLImageElement, shadowImg: HTMLImageElement;
