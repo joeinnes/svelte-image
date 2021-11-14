@@ -1,6 +1,6 @@
 {
 	"name": "@joeinnes/statically-image",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Svelte Component for using the Statically image CDN to dynamically serve responsive images.",
 	"homepage": "https://github.com/joeinnes/statically-image",
 	"bugs": {
