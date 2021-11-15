@@ -53,3 +53,17 @@ provider.set({
 * You should provide a full URL to the image, not a relative path.
 
 * In case you're using Statically (ie: the default) and there's no supported extension (gif, jpg, jpeg, png, or webp) listed in the image path, then the component will render the original, unoptimised version (https://twitter.com/staticallyio/status/1405700757475663873). You may be able to work around this by adding an ignored query (eg: `&image.jpg`) to the end of the URL or somewhere in the path, but results may vary. For example, https://pbs.twimg.com/media/FEBzSvdWYAoVJGc?format=jpg&name=medium does not contain '.jpg', and appending `&image.jpg` does not work. However, you can add the .jpg after the ID: `https://pbs.twimg.com/media/FEBzSvdWYAoVJGc.jpg?format=jpg&name=medium`. This will vary depending on the origin.
+
+## Aspect Ratio
+Don't know exactly what aspect ratio your container will have when it loads on a user's screen? Use `bind:clientWidth` and `bind:clientHeight` to calculate the aspect ratio:
+
+```
+<script>
+  import { Image } from '@joeinnes/svelte-image';
+  let clientWidth = 0;
+  let clientHeight = 0;
+</script>
+
+<div bind:clientWidth bind:clientHeight>
+  <Image src="https://kit.svelte.dev/images/svelte-kit-machine.webp" alt="Some alt text which is required" aspectRatio={clientWidth + "/" + clientHeight} objectFit="cover" quality="80"  loading="lazy" hidpi={true} />
+</div>

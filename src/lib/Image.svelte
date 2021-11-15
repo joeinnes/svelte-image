@@ -65,7 +65,6 @@
 		console.log(
 			'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
 		);
-		console.error(e);
 		imgSrc = src;
 	};
 

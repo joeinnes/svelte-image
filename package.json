@@ -1,6 +1,6 @@
 {
 	"name": "@joeinnes/svelte-image",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Svelte Component for using image CDNs to dynamically serve responsive images.",
 	"homepage": "https://github.com/joeinnes/svelte-image",
 	"bugs": {
