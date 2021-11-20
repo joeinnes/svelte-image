@@ -6,7 +6,7 @@
 	export let aspectRatio = '16/9';
 	export let objectFit = 'cover';
 	export let quality = '80';
-	export let src = 'https://kit.svelte.dev/images/svelte-kit-machine.webp';
+	export let src = 'https://images.unsplash.com/photo-1551867633-194f125bddfa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80?file.jpg';
 	export let loading = 'lazy';
 	export let hidpi = true;
 	let actualImg: HTMLImageElement, shadowImg: HTMLImageElement;
@@ -33,7 +33,7 @@
 		};
 	}
 
-	const getNewImgSrc = (clientW: number) => {
+	const getNewImgSrc = (clientW: number, src: string) => {
 		try {
 			const imgUrl = new URL(src);
 			domain = imgUrl.host;
@@ -60,7 +60,7 @@
 		}
 	};
 
-	const getNewImgSrcDB = browser ? debounce(() => getNewImgSrc(clientW), 100) : getNewImgSrc;
+	const getNewImgSrcDB = browser ? debounce(() => getNewImgSrc(clientW, src), 100) : getNewImgSrc;
 	const handleError = (e) => {
 		console.log(
 			'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
@@ -69,7 +69,7 @@
 	};
 
 	$: {
-		imgSrc = getNewImgSrcDB(clientW);
+		imgSrc = getNewImgSrcDB(clientW, src);
 	}
 </script>
 
