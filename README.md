@@ -20,7 +20,7 @@ Note that except for the 'alt' tag, all tags are optional and their default valu
 By default, the [Statically](https://statically.io) will be used. You can configure alternative providers by specifying a 'name' and a 'key'.
 
 ```
-import { Image, provider } from '$lib/index';
+import { Image, provider } from '@joeinnes/svelte-image';
 provider.set({
   name: 'cloudimage',
   key: 'cloudimage_token'
@@ -67,3 +67,24 @@ Don't know exactly what aspect ratio your container will have when it loads on a
 <div bind:clientWidth bind:clientHeight>
   <Image src="https://kit.svelte.dev/images/svelte-kit-machine.webp" alt="Some alt text which is required" aspectRatio={clientWidth + "/" + clientHeight} objectFit="cover" quality="80"  loading="lazy" hidpi={true} />
 </div>
+```
+
+## Have full control of your server?
+
+Then this might not be the best package for you. 
+
+This component is more suitable if you:
+
+* don't have a server
+* don't have storage space/processing power on the server
+* need images to be cropped/resized/whatever at runtime rather than at buildtime
+* want something that works with SvelteKit
+* don't have a CDN in place already
+
+If you:
+
+* have a CDN in place
+* need more finegrained control over image processing
+* don't want third parties interfering with your images
+
+You might instead want to check out https://github.com/matyunya/svelte-image
