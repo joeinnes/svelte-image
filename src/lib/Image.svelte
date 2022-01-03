@@ -76,7 +76,7 @@
 <div style="width: 100%; aspect-ratio: {aspectRatio}" bind:clientWidth={clientW}>
 	{#if imgSrc}
 		<img
-			src=""
+			src="data:,"
 			style="width: 100%; height: 100%; object-fit: {objectFit}"
 			{alt}
 			{loading}
