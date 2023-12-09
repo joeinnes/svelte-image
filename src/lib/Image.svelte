@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import { provider } from '$lib/store/store';
 
 	export let alt: string;
@@ -55,13 +55,12 @@
 			console.log(
 				'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
 			);
-		} finally {
-			return imgSrc;
 		}
+		return imgSrc;
 	};
 
 	const getNewImgSrcDB = browser ? debounce(() => getNewImgSrc(clientW, src), 100) : getNewImgSrc;
-	const handleError = (e) => {
+	const handleError = () => {
 		console.log(
 			'Your image could not be optimised (did you provide a full path and make sure the extension is included?)'
 		);
